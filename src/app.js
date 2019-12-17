@@ -6,16 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
     data: {
       rates: {},
       selectedCurrency: null,
-      conversionAmount: 0
+      euroConversionAmount: 0,
+      conversionToEuroAmount: 1
     },
     computed: {
-      currencyConversion: function(){
-        return this.convertCurrency(this.conversionAmount)
+      currencyToEuroConversion: function(){
+        return this.convertCurrencyToEuro(this.conversionToEuroAmount)
+      },
+      currencyFromEuroConversion: function(){
+        return this.convertCurrencyFromEuro(this.euroConversionAmount)
       }
 
     },
     mounted() {
-
       this.getCurrencyRates()
     },
     methods: {
@@ -24,8 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.json())
         .then(data => this.rates = data.rates)
       },
-      convertCurrency: function(amount){
+      convertCurrencyFromEuro: function(amount){
         const converted = amount * this.selectedCurrency
+        return converted.toFixed(2)
+      },
+      convertCurrencyToEuro: function(amount){
+        const converted = amount / this.selectedCurrency
         return converted.toFixed(2)
       }
     }

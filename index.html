@@ -11,17 +11,28 @@
 <body>
   <h1>The amazing Currency Converter</h1>
   <div id="app">
-    <form id = "formInput">
-      <label for="conversionAmount"> Amount to Convert</label>
-      <input type="number" v-model="conversionAmount">
-      <label for="currency_select">Select a Currency:</label>
+    <form id = "euroInput">
+      <label for="euroConversionAmount"> Amount in Euros €</label>
+      <input type="number" v-model="euroConversionAmount">
+      <label for="currency_select"> Select conversion Currency:</label>
           <select id="currency_select" v-model="selectedCurrency">
             <option disabled value="">Select a currency</option>
             <option v-for="( rate, name) in rates" :value="rate">{{name}}</option>
           </select>
-
     </form>
-    <h2>converted amount: €{{currencyConversion}}</h2>
+  <h2>Converted amount: {{currencyFromEuroConversion}}</h2>
+
+    <form id = "euroOutput">
+      <label for="conversionToEuroAmount"> Amount to convert</label>
+      <input type="number" v-model="conversionToEuroAmount">
+      <label for="currency_select"> Select Currency:</label>
+          <select id="currency_select" v-model="selectedCurrency">
+            <option disabled value="">Select a currency</option>
+            <option v-for="( rate, name) in rates" :value="rate">{{name}}</option>
+          </select>
+    </form>
+    <h2>Converted amount: {{currencyToEuroConversion}}</h2>
+
 <ul id="currencyList" >
 <li v-for="( rate, name) in rates">{{ name}} - {{rate }}
 </li>
