@@ -13,8 +13,15 @@
   <div id="app">
     <form id = "formInput">
       <label for="conversionAmount"> Amount to Convert</label>
-    <input type="text" >
+      <input type="number" v-model="conversionAmount">
+      <label for="currency_select">Select a Currency:</label>
+          <select id="currency_select" v-model="selectedCurrency">
+            <option disabled value="">Select a currency</option>
+            <option v-for="( rate, name) in rates" :value="rate">{{name}}</option>
+          </select>
+
     </form>
+    <h2>converted amount: €{{currencyConversion}}</h2>
 <ul id="currencyList" >
 <li v-for="( rate, name) in rates">{{ name}} - {{rate }}
 </li>
